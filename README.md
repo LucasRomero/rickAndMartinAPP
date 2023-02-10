@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # RickAndMartinAPP
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
@@ -29,4 +28,3 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 =======
 # rickAndMartinAPP
 Proyect of Rick and Morty 
->>>>>>> dc0c3ff2a185ea4a4aa11dcf624dfe185165ce8f
