@@ -51,7 +51,6 @@ export class CharacterListComponent implements OnInit {
   private getCharactersByQuery(): void {
     // route
     this.route.queryParams.pipe(take(1)).subscribe((params) => {
-      console.log(params);
       this.query = params['q'] || '';
       this.getDataFromService();
     });
@@ -63,6 +62,7 @@ export class CharacterListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((res: any) => {
         if (res?.results?.length) {
+          console.log(res);
           const { info, results } = res;
           this.characters = [...this.characters, ...results];
           this.info = info;

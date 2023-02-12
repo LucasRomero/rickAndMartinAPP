@@ -4,8 +4,13 @@ import { RouterModule } from '@angular/router';
 
 import { CharacterListComponent } from '@characters/character-list/character-list.component';
 import { CharacterDetailsComponent } from '@characters/character-details/character-details.component';
+import { CharacterComponent } from '@characters/character.component';
 
-const myComponents = [CharacterDetailsComponent, CharacterListComponent];
+const myComponents = [
+  CharacterDetailsComponent,
+  CharacterListComponent,
+  CharacterComponent
+];
 
 @NgModule({
   declarations: [...myComponents],

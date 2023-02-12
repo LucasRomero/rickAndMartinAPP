@@ -3,7 +3,7 @@ export interface Character {
   name: string;
   species: string;
   gender: string;
-  createad: string;
+  created: string;
   status: string;
   image: string;
 }
