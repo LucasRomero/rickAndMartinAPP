@@ -11,7 +11,7 @@ export class CharacterService {
 
   searchChyaracters(query = '', page = 1) {
     return this.http.get<Character[]>(
-      `${enviroment.baseUrlApi}/name?${query}&page=${page}`
+      `${enviroment.baseUrlApi}/?name=${query}&page=${page}`
     );
   }
 
