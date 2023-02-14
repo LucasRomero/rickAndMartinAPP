@@ -1,5 +1,8 @@
 # RickAndMartinAPP
 
+![rickandmortyApp](https://user-images.githubusercontent.com/29993565/218737231-cbf3fe38-8b12-4896-a396-a49a8920484e.png)
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
 
 ## Development server
