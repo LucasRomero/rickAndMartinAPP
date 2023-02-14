@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
+import { DOCUMENT } from '@angular/common';
 import { filter, take } from 'rxjs';
 
 import { Character } from '@shared/interface/characters.interface';
@@ -21,12 +22,14 @@ export class CharacterListComponent implements OnInit {
     next: ''
   };
 
+  showGoUpButton = false;
   private pageNum = 1;
   private query = '';
   private hideScrollHeight = 200;
   private showScrollHeight = 500;
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private characterService: CharacterService,
     private route: ActivatedRoute,
     private router: Router
@@ -36,6 +39,35 @@ export class CharacterListComponent implements OnInit {
   ngOnInit(): void {
     // this.getDataFromService();
     this.getCharactersByQuery();
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    const yOffSet = window.scrollY;
+
+    const scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop;
+
+    if ((yOffSet || scrollTop) > this.showScrollHeight) {
+      this.showGoUpButton = true;
+    } else if (
+      this.showGoUpButton &&
+      (yOffSet || scrollTop) < this.hideScrollHeight
+    ) {
+      this.showGoUpButton = false;
+    }
+  }
+
+  onScrollDown() {
+    if (this.info.next) {
+      this.pageNum++;
+      this.getDataFromService();
+    }
+  }
+
+  onScrollTop() {
+    this.document.body.scrollTop = 0; // Safari
+    this.document.documentElement.scrollTop = 0; // Rest of browsers
   }
 
   private onUrlChanged(): void {
@@ -62,7 +94,6 @@ export class CharacterListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((res: any) => {
         if (res?.results?.length) {
-          console.log(res);
           const { info, results } = res;
           this.characters = [...this.characters, ...results];
           this.info = info;
